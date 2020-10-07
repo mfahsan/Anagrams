@@ -26,6 +26,9 @@ class App extends Component {
     this.setState({word2: event.target.value})
   }
 
+
+  // this code passes the two entered words to the backend, and returns whether the words are 
+  // anagrams 
   async checkAnagram() {
     
     axios.post('/api', {
@@ -35,25 +38,23 @@ class App extends Component {
             .then(response => {
               if (response.data == "1") {
                 this.setState({anagram : "These words are anagrams"})
-                //console.log(this.state.anagram)
+
               }
               else {
                 this.setState({anagram : "These words are not anagrams"})
               }
-            
-              
-              
-       //Perform action based on response
+  
         })
         .catch(function(error){
             console.log(error);
-       //Perform action based on error
+  
         });
  
 
 
   }
 
+  // this function returns the ten most popular searches
   async checkPopular() {
     axios.post('/popular')
     .then(response => {
